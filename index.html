@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/41fbc51d0b.js" crossorigin="anonymous"></script>
+    <title>Access Code</title>
+</head>
+
+<body>
+    <section>
+        <div class="form">
+            <h2>Enter Password</h2>
+            <input id="input" type="password">
+            <button id="btn">Enter</button>
+            <h4>Password must contain the following:</h4>
+
+            <p class="capital-letter"><span id="cap-span" class="check-mark cap-check">&#10003</span>Capital letter</p>
+            <p class="number"><span id="num" class="check-mark num-check">&#10003</span>Number</p>
+            <p class="special-character"><span id="special-char" class="check-mark special-check">&#10003</span>Special
+                character</p>
+            <p class="length"><span id="length-check" class="check-mark length-check">&#10003</span>6 - 12 characters
+            </p>
+
+        </div>
+    </section>
+    <section>
+        <div class="form">
+            <h2>Enter Acess Code</h2>
+            <span>
+                <input type="text" maxlength="1" inputmode="numeric" pattern="[1-9]*"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" maxlength="1" inputmode="numeric" pattern="[1-9]*"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" maxlength="1" inputmode="numeric" pattern="[1-9]*"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" maxlength="1" inputmode="numeric" pattern="[1-9]*"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" maxlength="1" inputmode="numeric" pattern="[1-9]*"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" maxlength="1" inputmode="numeric" pattern="[1-9]*"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </span>
+            <button>Enter</button>
+        </div>
+    </section>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

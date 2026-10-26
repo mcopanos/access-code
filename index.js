@@ -23,21 +23,29 @@ function hasNumber(password) {
     }
 }
 
+function passwordLength(password) {
+    if (password) {
+        if (password.length >= 6 && password.length <= 12) {
+            lengthCheck.classList.toggle('length-check');
+            return true; 
+        } else {
+            return false;
+        }
+    }
+}
+
 function checkPassword(password) {
     let passwordArray = [...password];
     let specialChars = ['!', '#', '$', '%', '&', '*'];
     // checks for capital letter
     let isUpper = isUpperCase(passwordArray);
-    console.log(isUpper);
+    console.log(`password has an uppercase letter? ${isUpper}`);
     // checks for number 
     let hasNum = hasNumber(passwordArray);
-    console.log(hasNum);
+    console.log(`password has a number? ${hasNum}`);
     // check length
-    if (passwordArray) {
-        if (passwordArray.length >= 6 && passwordArray.length <= 12) {
-            lengthCheck.classList.toggle('length-check');
-        }
-    }
+    let isLongEnough = passwordLength(passwordArray);
+    console.log(`password is long enough? ${isLongEnough}`)
     // check for special character
     if (passwordArray) {
         let isChecked = false

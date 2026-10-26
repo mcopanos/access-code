@@ -6,10 +6,17 @@ let num = document.getElementById('num');
 let lengthCheck = document.getElementById('length-check');
 
 function isUpperCase(password) {
-    const upperCase = password => /[A-Z]/.test(password)
-    upperCase(password)
-    if (upperCase){
+    if (password.find(char => /[A-Z]/.test(char))) {
         capLetter.classList.toggle('cap-check');
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function hasNumber(password) {
+    if (password.find(char => /[0-9]/.test(char))) {
+        num.classList.toggle('num-check');
         return true;
     } else {
         return false;
@@ -20,12 +27,11 @@ function checkPassword(password) {
     let passwordArray = [...password];
     let specialChars = ['!', '#', '$', '%', '&', '*'];
     // checks for capital letter
-    let isUpper = isUpperCase(password);
+    let isUpper = isUpperCase(passwordArray);
     console.log(isUpper);
     // checks for number 
-    if (passwordArray.find(char => /[0-9]/.test(char))) {
-        num.classList.toggle('num-check');
-    }
+    let hasNum = hasNumber(passwordArray);
+    console.log(hasNum);
     // check length
     if (passwordArray) {
         if (passwordArray.length >= 6 && passwordArray.length <= 12) {

@@ -34,9 +34,28 @@ function passwordLength(password) {
     }
 }
 
+function hasSpecialChar(password) {
+    let specialChars = ['!', '#', '$', '%', '&', '*'];
+    if (password) {
+        let isChecked = false
+        for (i = 0; i < password.length; i++){
+            for (j = 0; j < specialChars.length; j++) {
+                if (password[i] === specialChars[j]) {
+                    if (isChecked === false) {
+                        specialChar.classList.toggle('special-check');
+                        isChecked = true;
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+}
+
 function checkPassword(password) {
     let passwordArray = [...password];
-    let specialChars = ['!', '#', '$', '%', '&', '*'];
     // checks for capital letter
     let isUpper = isUpperCase(passwordArray);
     console.log(`password has an uppercase letter? ${isUpper}`);
@@ -45,22 +64,10 @@ function checkPassword(password) {
     console.log(`password has a number? ${hasNum}`);
     // check length
     let isLongEnough = passwordLength(passwordArray);
-    console.log(`password is long enough? ${isLongEnough}`)
+    console.log(`password is long enough? ${isLongEnough}`);
     // check for special character
-    if (passwordArray) {
-        let isChecked = false
-        for (i = 0; i < passwordArray.length; i++){
-            for (j = 0; j < specialChars.length; j++) {
-                if (passwordArray[i] === specialChars[j]) {
-                    if (isChecked === false) {
-                        specialChar.classList.toggle('special-check');
-                        isChecked = true;
-                    }
-                    
-                }
-            }
-        }
-    }
+    let hasSpecialCharacter = hasSpecialChar(password);
+    console.log(`password has special character? ${hasSpecialCharacter}`);
 }
 
 // event listener on the submit button

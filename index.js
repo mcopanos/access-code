@@ -68,12 +68,22 @@ function checkPassword(password) {
     // check for special character
     let hasSpecialCharacter = hasSpecialChar(password);
     console.log(`password has special character? ${hasSpecialCharacter}`);
+
+    if (isUpper && hasNum && isLongEnough && hasSpecialCharacter) {
+        alert('You have passed all criteria.');
+    } else {
+        alert('Please check password requirements and try again.')
+    }
 }
 
 // event listener on the submit button
 btn.addEventListener('click', () => {
     inputVal = input.value;
-    checkPassword(inputVal);
+    if (inputVal != '') {
+        checkPassword(inputVal);
+    } else {
+        alert('You must enter your password!');
+    }
 });
 
 function printToConsole(message) {

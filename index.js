@@ -74,12 +74,14 @@ function checkPassword(password) {
     let hasSpecialCharacter = hasSpecialChar(password);
     console.log(`password has special character? ${hasSpecialCharacter}`);
 
-    if (isUpper && hasNum && isLongEnough && hasSpecialCharacter) {
-        accessCode = accessToken();
-        alert(`You access code is: ${accessCode}`);
-    } else {
-        alert('Please check password requirements and try again.')
-    }
+    setTimeout(() => {
+        if (isUpper && hasNum && isLongEnough && hasSpecialCharacter) {
+            accessCode = accessToken();
+            alert(`Your access code is: ${accessCode}`);
+        } else {
+            alert('Please check password requirements and try again.')
+        }
+    }, 750)
 }
 
 // event listener on the submit button

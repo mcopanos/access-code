@@ -4,6 +4,7 @@ let specialChar = document.getElementById('special-char');
 let capLetter = document.getElementById('cap-span');
 let num = document.getElementById('num');
 let lengthCheck = document.getElementById('length-check');
+let accessCode = '';
 
 function isUpperCase(password) {
     if (password.find(char => /[A-Z]/.test(char))) {
@@ -53,6 +54,10 @@ function hasSpecialChar(password) {
         }
     }
 }
+// generate 6 digit code 
+function accessToken() {
+    return Math.floor(Math.random() * 999999) + 1;
+}
 
 function checkPassword(password) {
     let passwordArray = [...password];
@@ -70,7 +75,8 @@ function checkPassword(password) {
     console.log(`password has special character? ${hasSpecialCharacter}`);
 
     if (isUpper && hasNum && isLongEnough && hasSpecialCharacter) {
-        alert('You have passed all criteria.');
+        accessCode = accessToken();
+        alert(`You access code is: ${accessCode}`);
     } else {
         alert('Please check password requirements and try again.')
     }
@@ -89,5 +95,5 @@ btn.addEventListener('click', () => {
 function printToConsole(message) {
     console.log(message);
 }
-// generate 6 digit code 
+
 // verify that code once entered

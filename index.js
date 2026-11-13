@@ -4,11 +4,12 @@ let specialChar = document.getElementById('special-char');
 let capLetter = document.getElementById('cap-span');
 let num = document.getElementById('num');
 let lengthCheck = document.getElementById('length-check');
+let specialChars = ['!', '#', '$', '%', '&', '*'];
 let accessCode = '';
 
 function isUpperCase(password) {
     if (password.find(char => /[A-Z]/.test(char))) {
-        capLetter.classList.toggle('cap-check');
+        capLetter.classList.remove('cap-check');
         return true;
     } else {
         return false;
@@ -17,7 +18,7 @@ function isUpperCase(password) {
 
 function hasNumber(password) {
     if (password.find(char => /[0-9]/.test(char))) {
-        num.classList.toggle('num-check');
+        num.classList.remove('num-check');
         return true;
     } else {
         return false;
@@ -27,7 +28,7 @@ function hasNumber(password) {
 function passwordLength(password) {
     if (password) {
         if (password.length >= 6 && password.length <= 12) {
-            lengthCheck.classList.toggle('length-check');
+            lengthCheck.classList.remove('length-check');
             return true; 
         } else {
             return false;
@@ -36,14 +37,13 @@ function passwordLength(password) {
 }
 
 function hasSpecialChar(password) {
-    let specialChars = ['!', '#', '$', '%', '&', '*'];
     if (password) {
         let isChecked = false
         for (i = 0; i < password.length; i++){
             for (j = 0; j < specialChars.length; j++) {
                 if (password[i] === specialChars[j]) {
                     if (isChecked === false) {
-                        specialChar.classList.toggle('special-check');
+                        specialChar.classList.remove('special-check');
                         isChecked = true;
                         return true;
                     } else {
@@ -78,6 +78,8 @@ function checkPassword(password) {
         if (isUpper && hasNum && isLongEnough && hasSpecialCharacter) {
             accessCode = accessToken();
             alert(`Your access code is: ${accessCode}`);
+        } else if (!hasSpecialCharacter) {
+            alert(`Make sure you have one of the following characters: ${specialChars}`)
         } else {
             alert('Please check password requirements and try again.')
         }

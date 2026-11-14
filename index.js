@@ -54,10 +54,6 @@ function hasSpecialChar(password) {
         }
     }
 }
-// generate 6 digit code 
-function accessToken() {
-    return Math.floor(Math.random() * 999999) + 1;
-}
 
 function checkPassword(password) {
     let passwordArray = [...password];
@@ -84,6 +80,10 @@ function checkPassword(password) {
             alert('Please check password requirements and try again.')
         }
     }, 750)
+}
+
+function accessToken() {
+    return Math.floor(Math.random() * 999999) + 1;
 }
 
 // event listener on the submit button

@@ -6,6 +6,8 @@ let num = document.getElementById('num');
 let lengthCheck = document.getElementById('length-check');
 let specialChars = ['!', '#', '$', '%', '&', '*'];
 let accessCode = '';
+let accessCodeInputs = Array.from(document.querySelectorAll('.access-code-input'));
+console.log(accessCodeInputs);
 
 function isUpperCase(password) {
     if (password.find(char => /[A-Z]/.test(char))) {
@@ -85,6 +87,19 @@ function checkPassword(password) {
 function accessToken() {
     return Math.floor(Math.random() * 999999) + 1;
 }
+// still need to figure out how to advance to next input.
+accessCodeInputs.map((input, index) => {
+    input.addEventListener('input', (e) => {
+        const maxLength = e.target.getAttribute('maxlength')
+        let target = e.target.value.length; 
+        if (target == maxLength) {
+            const nextInput = document.getElementById(`aci${index + 1}`);
+            if (nextInput) {
+                nextInput.focus();
+            }
+        }
+    });
+});
 
 // event listener on the submit button
 btn.addEventListener('click', () => {
@@ -99,5 +114,3 @@ btn.addEventListener('click', () => {
 function printToConsole(message) {
     console.log(message);
 }
-
-// verify that code once entered

@@ -7,7 +7,7 @@ let lengthCheck = document.getElementById('length-check');
 let specialChars = ['!', '#', '$', '%', '&', '*'];
 let accessCode = '';
 let accessCodeInputs = Array.from(document.querySelectorAll('.access-code-input'));
-console.log(accessCodeInputs);
+let form = document.querySelector('.otp-form');
 
 function isUpperCase(password) {
     if (password.find(char => /[A-Z]/.test(char))) {
@@ -87,7 +87,7 @@ function checkPassword(password) {
 function accessToken() {
     return Math.floor(Math.random() * 999999) + 1;
 }
-// still need to figure out how to advance to next input.
+// auto tab to next index
 accessCodeInputs.map((input, index) => {
     input.addEventListener('input', (e) => {
         const maxLength = e.target.getAttribute('maxlength')
@@ -101,6 +101,16 @@ accessCodeInputs.map((input, index) => {
     });
 });
 
+//handle pasted input data
+form.addEventListener('paste', (e) => {
+
+    const digits = e.clipboardData.getData('text');
+    // .replace(/\D/g, '');
+    if (!digits) return;
+
+    accessCodeInputs.forEach((input, i) => (input.value = digits[i]));
+});
+
 // event listener on the submit button
 btn.addEventListener('click', () => {
     inputVal = input.value;
@@ -111,6 +121,6 @@ btn.addEventListener('click', () => {
     }
 });
 
-function printToConsole(message) {
-    console.log(message);
-}
+// function printToConsole(message) {
+//     console.log(message);
+// }

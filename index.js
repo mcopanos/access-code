@@ -14,7 +14,7 @@ function isUpperCase(password) {
         capLetter.classList.remove('cap-check');
         return true;
     } else {
-        capLetter.classList.remove('cap-check');
+        capLetter.classList.add('cap-check');
         return false;
     }
 }
@@ -51,10 +51,13 @@ function hasSpecialChar(password) {
                         specialChar.classList.remove('special-check');
                         isChecked = true;
                         return true;
-                    } else {
-                        specialChar.classList.add('special-check');
-                        return false;
-                    }
+                    } //else {
+                        // specialChar.classList.add('special-check');
+                        // isChecked = false;
+                        //return false;
+                    //}
+                } else {
+                    specialChar.classList.add('special-check')
                 }
             }
         }
@@ -80,15 +83,15 @@ function checkPassword(password) {
         if (isUpper && hasNum && isLongEnough && hasSpecialCharacter) {
             accessCode = accessToken();
             alert(`Your access code is: ${accessCode}`);
-        } else if (!hasSpecialCharacter) {
-            let message = `Make sure you have one of the following characters:\n`
-            handleErrorMessage(message, specialChars)
         } else if (!isUpper) {
             let message = 'Please add an upper case letter to your password.';
             handleErrorMessage(message)
         } else if (!hasNum) {
             let message = 'Please make sure to a number to your password.';
             handleErrorMessage(message);
+        } else if (!hasSpecialCharacter) {
+            let message = `Make sure you have one of the following characters:\n`
+            handleErrorMessage(message, specialChars)
         } else {
             let message = 'Please make sure that your password is between 6 to 12 characters.'
             handleErrorMessage(message);

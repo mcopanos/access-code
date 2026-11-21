@@ -79,6 +79,7 @@ ul li::before {
 }
 
 .form>input[type=password],
+.form>input[type=text],
 button {
     width: 250px;
     height: 45px;

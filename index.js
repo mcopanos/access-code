@@ -14,6 +14,7 @@ function isUpperCase(password) {
         capLetter.classList.remove('cap-check');
         return true;
     } else {
+        capLetter.classList.remove('cap-check');
         return false;
     }
 }
@@ -23,6 +24,7 @@ function hasNumber(password) {
         num.classList.remove('num-check');
         return true;
     } else {
+        num.classList.add('num-check');
         return false;
     }
 }
@@ -33,6 +35,7 @@ function passwordLength(password) {
             lengthCheck.classList.remove('length-check');
             return true; 
         } else {
+            lengthCheck.classList.add('length-check');
             return false;
         }
     }
@@ -49,6 +52,7 @@ function hasSpecialChar(password) {
                         isChecked = true;
                         return true;
                     } else {
+                        specialChar.classList.add('special-check');
                         return false;
                     }
                 }
@@ -77,11 +81,23 @@ function checkPassword(password) {
             accessCode = accessToken();
             alert(`Your access code is: ${accessCode}`);
         } else if (!hasSpecialCharacter) {
-            alert(`Make sure you have one of the following characters: ${specialChars}`)
+            let message = `Make sure you have one of the following characters:\n`
+            handleErrorMessage(message, specialChars)
+        } else if (!isUpper) {
+            let message = 'Please add an upper case letter to your password.';
+            handleErrorMessage(message)
+        } else if (!hasNum) {
+            let message = 'Please make sure to a number to your password.';
+            handleErrorMessage(message);
         } else {
-            alert('Please check password requirements and try again.')
+            let message = 'Please make sure that your password is between 6 to 12 characters.'
+            handleErrorMessage(message);
         }
     }, 750)
+}
+
+function handleErrorMessage(message, error='') {
+    alert(`${message} ${error}`);
 }
 
 function accessToken() {
@@ -120,7 +136,3 @@ btn.addEventListener('click', () => {
         alert('You must enter your password!');
     }
 });
-
-// function printToConsole(message) {
-//     console.log(message);
-// }

@@ -8,6 +8,9 @@ let specialChars = ['!', '#', '$', '%', '&', '*'];
 let accessCode = '';
 let accessCodeInputs = Array.from(document.querySelectorAll('.access-code-input'));
 let form = document.querySelector('.otp-form');
+let passwordSection = document.getElementById('enterPassword');
+let showOTP = document.getElementById('showOTP');
+let otp = document.getElementById('otp');
 
 function isUpperCase(password) {
     if (password.find(char => /[A-Z]/.test(char))) {
@@ -82,7 +85,9 @@ function checkPassword(password) {
     setTimeout(() => {
         if (isUpper && hasNum && isLongEnough && hasSpecialCharacter) {
             accessCode = accessToken();
-            alert(`Your access code is: ${accessCode}`);
+            otp.innerHTML = `<span>${accessCode}</span>`;
+            passwordSection.classList.toggle('hidden');
+            showOTP.classList.toggle('hidden');
         } else if (!isUpper) {
             let message = 'Please add an upper case letter to your password.';
             handleErrorMessage(message)

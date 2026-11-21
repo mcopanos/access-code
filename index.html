@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <section>
+    <section id="enterPassword">
         <div class="form">
             <h2>Enter Password</h2>
             <input id="input" type="password">
@@ -29,6 +29,17 @@
                 character</p>
             <p class="length"><span id="length-check" class="check-mark length-check">&#10003</span>6 - 12 characters
             </p>
+
+        </div>
+    </section>
+    <section id="showOTP" class="hidden">
+        <div class="form">
+            <h2>Here is your One Time Password</h2>
+            <!-- <input id="input" type="password"> -->
+            <h2 id="otp"></h2>
+            <button>Copy Password</button>
+
+            <p>Time remaining to use password<span></span></p>
 
         </div>
     </section>

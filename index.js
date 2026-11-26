@@ -11,7 +11,9 @@ let form = document.querySelector('.otp-form');
 let passwordSection = document.getElementById('enterPassword');
 let showOTP = document.getElementById('showOTP');
 let otp = document.getElementById('otp');
+let copyBtn = document.getElementById('copyBtn');
 
+// check password for an upper case character
 function isUpperCase(password) {
     if (password.find(char => /[A-Z]/.test(char))) {
         capLetter.classList.remove('cap-check');
@@ -22,6 +24,7 @@ function isUpperCase(password) {
     }
 }
 
+// check password for a number
 function hasNumber(password) {
     if (password.find(char => /[0-9]/.test(char))) {
         num.classList.remove('num-check');
@@ -32,6 +35,7 @@ function hasNumber(password) {
     }
 }
 
+// check password length
 function passwordLength(password) {
     if (password) {
         if (password.length >= 6 && password.length <= 12) {
@@ -44,6 +48,7 @@ function passwordLength(password) {
     }
 }
 
+// check for special character in password
 function hasSpecialChar(password) {
     if (password) {
         let isChecked = false
@@ -67,6 +72,7 @@ function hasSpecialChar(password) {
     }
 }
 
+// Check password criteria 
 function checkPassword(password) {
     let passwordArray = [...password];
     // checks for capital letter
@@ -104,10 +110,12 @@ function checkPassword(password) {
     }, 750)
 }
 
+// handle password error messages
 function handleErrorMessage(message, error='') {
     alert(`${message} ${error}`);
 }
 
+// make ramdom 6 digit OTP
 function accessToken() {
     return Math.floor(Math.random() * 999999) + 1;
 }
@@ -125,16 +133,6 @@ accessCodeInputs.map((input, index) => {
     });
 });
 
-//handle pasted input data
-form.addEventListener('paste', (e) => {
-
-    const digits = e.clipboardData.getData('text');
-    // .replace(/\D/g, '');
-    if (!digits) return;
-
-    accessCodeInputs.forEach((input, i) => (input.value = digits[i]));
-});
-
 // event listener on the submit button
 btn.addEventListener('click', () => {
     inputVal = input.value;
@@ -144,3 +142,19 @@ btn.addEventListener('click', () => {
         alert('You must enter your password!');
     }
 });
+
+//handle pasted input data
+form.addEventListener('paste', (e) => {
+
+    const digits = e.clipboardData.getData('text').replace(/\D/g, '');
+    if (!digits) return;
+
+    accessCodeInputs.forEach((input, i) => (input.value = digits[i]));
+});
+
+// handle coping OTA code
+copyBtn.addEventListener('click', () => {
+    const otpCode = otp.innerText;
+    navigator.clipboard.writeText(otpCode);
+    alert(`${otpCode} was copied!`)
+})

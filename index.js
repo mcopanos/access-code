@@ -143,6 +143,18 @@ btn.addEventListener('click', () => {
     }
 });
 
+// evnet listener on enter key
+input.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        inputVal = input.value;
+        if (inputVal != '') {
+            checkPassword(inputVal);
+        } else {
+            alert('You must enter your password!');
+        }
+    }
+});
+
 //handle pasted input data
 form.addEventListener('paste', (e) => {
 

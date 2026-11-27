@@ -12,6 +12,7 @@ let passwordSection = document.getElementById('enterPassword');
 let showOTP = document.getElementById('showOTP');
 let otp = document.getElementById('otp');
 let copyBtn = document.getElementById('copyBtn');
+let confirmBtn = document.getElementById('confirm');
 
 // check password for an upper case character
 function isUpperCase(password) {
@@ -125,6 +126,7 @@ function accessToken() {
     } 
     return code;
 }
+
 // auto tab to next index
 accessCodeInputs.map((input, index) => {
     input.addEventListener('input', (e) => {
@@ -163,7 +165,6 @@ input.addEventListener('keyup', (e) => {
 
 //handle pasted input data
 form.addEventListener('paste', (e) => {
-
     const digits = e.clipboardData.getData('text').replace(/\D/g, '');
     if (!digits) return;
 
@@ -175,4 +176,21 @@ copyBtn.addEventListener('click', () => {
     const otpCode = otp.innerText;
     navigator.clipboard.writeText(otpCode);
     alert(`${otpCode} was copied!`)
-})
+});
+
+// handle OTP confirmation 
+confirmBtn.addEventListener('click', () => {
+    let otpDigits = document.querySelectorAll('.access-code-input');
+    let arrDigits = []
+    otpDigits.forEach(digit => {
+        arrDigits.push(digit.value);
+    });
+    
+    let result = Number(arrDigits.join(''));
+
+    if (result === accessCode) {
+        alert('Access granted!');
+    } else {
+        alert('Access denied!');
+    }
+});

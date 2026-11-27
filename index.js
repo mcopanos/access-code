@@ -117,7 +117,13 @@ function handleErrorMessage(message, error='') {
 
 // make ramdom 6 digit OTP
 function accessToken() {
-    return Math.floor(Math.random() * 999999) + 1;
+    let code = 0
+    let codeArr = [];
+    while (codeArr.length < 6) {
+        code = Math.floor(100000 + Math.random() * 900000);
+        codeArr = String(code).split('').map(Number);
+    } 
+    return code;
 }
 // auto tab to next index
 accessCodeInputs.map((input, index) => {

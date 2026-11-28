@@ -17,9 +17,9 @@
     <section id="enterPassword">
         <div class="form">
             <h2>Enter Password</h2>
-            <input id="input" type="password">
-            <!-- add view password functionality -->
-            <!-- <img src="images/view.png" alt="view password image"> -->
+            <input id="input" class="password-input" type="password">
+            <!-- <img class="view" src="images/view.png" alt="view password image">
+            <img class="hide" src="images/hide.png" alt="hide password image"> -->
             <button id="btn">Enter</button>
             <!-- <h4>Password must contain the following:</h4> -->
 
@@ -39,7 +39,8 @@
             <h2 id="otp"></h2>
             <button id="copyBtn">Copy Code</button>
 
-            <p>Time remaining to use password<span></span></p>
+            <p>Time remaining to use password:</p>
+            <span id="showCount"></span>
 
         </div>
     </section>

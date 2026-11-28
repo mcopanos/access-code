@@ -63,8 +63,6 @@ ul li::before {
     align-items: center;
     width: 80%;
     height: 75%;
-    /* border: 1px solid white; */
-    /* background-color: #272757; */
 }
 
 .check-mark {
@@ -114,4 +112,9 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+#showCount {
+    font-size: 22px;
+    font-weight: bold;
 }

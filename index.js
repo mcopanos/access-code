@@ -15,6 +15,8 @@ let copyBtn = document.getElementById('copyBtn');
 let confirmBtn = document.getElementById('confirm');
 let accessCodeInput1 = document.getElementById('aci0');
 let accessCodeInput6 = document.getElementById('aci5');
+let count = 30;
+let showCount = document.getElementById('showCount');
 
 // check password for an upper case character
 function isUpperCase(password) {
@@ -97,6 +99,7 @@ function checkPassword(password) {
             otp.innerHTML = `<span>${accessCode}</span>`;
             passwordSection.classList.toggle('hidden');
             showOTP.classList.toggle('hidden');
+            countDown();
         } else if (!isUpper) {
             let message = 'Please add an upper case letter to your password.';
             handleErrorMessage(message)
@@ -158,6 +161,17 @@ function otpConfirmation() {
     } else {
         alert('Access denied!');
     }
+}
+
+function countDown() {
+    const timer = setInterval(() => {
+        showCount.innerText = count;
+        count--;
+    
+        if (count < 0) {
+            clearInterval(timer);
+        }
+    }, 1000);
 }
 
 // event listener on the submit button

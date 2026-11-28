@@ -1,5 +1,5 @@
 const btn = document.getElementById('btn');
-var input = document.getElementById('input');
+let input = document.getElementById('input');
 let specialChar = document.getElementById('special-char');
 let capLetter = document.getElementById('cap-span');
 let num = document.getElementById('num');
@@ -13,6 +13,8 @@ let showOTP = document.getElementById('showOTP');
 let otp = document.getElementById('otp');
 let copyBtn = document.getElementById('copyBtn');
 let confirmBtn = document.getElementById('confirm');
+let accessCodeInput1 = document.getElementById('aci0');
+let accessCodeInput6 = document.getElementById('aci5');
 
 // check password for an upper case character
 function isUpperCase(password) {
@@ -141,6 +143,23 @@ accessCodeInputs.map((input, index) => {
     });
 });
 
+// handle OTP verificaton
+function otpConfirmation() {
+    let otpDigits = document.querySelectorAll('.access-code-input');
+    let arrDigits = [];
+
+    otpDigits.forEach(digit => {
+        arrDigits.push(digit.value);
+    });
+    
+    let result = Number(arrDigits.join(''));
+    if (result === accessCode) {
+        alert('Access granted!');
+    } else {
+        alert('Access denied!');
+    }
+}
+
 // event listener on the submit button
 btn.addEventListener('click', () => {
     inputVal = input.value;
@@ -178,19 +197,18 @@ copyBtn.addEventListener('click', () => {
     alert(`${otpCode} was copied!`)
 });
 
-// handle OTP confirmation 
-confirmBtn.addEventListener('click', () => {
-    let otpDigits = document.querySelectorAll('.access-code-input');
-    let arrDigits = []
-    otpDigits.forEach(digit => {
-        arrDigits.push(digit.value);
-    });
-    
-    let result = Number(arrDigits.join(''));
+// handle OTP confirmation on button click
+confirmBtn.addEventListener('click', otpConfirmation);
 
-    if (result === accessCode) {
-        alert('Access granted!');
-    } else {
-        alert('Access denied!');
+// handle OTP confirmation on enter
+accessCodeInput1.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        otpConfirmation();
+    }
+});
+
+accessCodeInput6.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        otpConfirmation();
     }
 });
